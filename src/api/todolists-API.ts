@@ -17,7 +17,6 @@ export type TodolistType = {
     addedDate: string,
     order: number
 }
-
 export type UpdateTaskModelType = {
     description: string
     title: string
@@ -27,19 +26,30 @@ export type UpdateTaskModelType = {
     deadline: string
 
 }
-
 type ResponseType<D = {}> = {
     resultCode: number
     messages: Array<string>
     data: D
 }
 
+export enum TaskStatuses {
+    New ,
+    InProgress,
+    Completed,
+    Draft
+}
+export enum TaskPriorities {
+    Low,
+    Middle,
+    Hi,
+    Urgently,
+    Later
+}
 export type TaskType = {
     description: string
     title: string
-    completed: boolean
-    status: number
-    priority: number
+    status: TaskStatuses
+    priority: TaskPriorities
     startDate: string
     deadline: string
     id: string
@@ -47,13 +57,11 @@ export type TaskType = {
     order: number
     addedDate: string
 }
-
 type GetTasksResponse = {
     error: string | null
     totalCount: number
     items: TaskType[]
 }
-
 
 export const todolistsAPI = {
     getTodolists() {
